@@ -35,3 +35,6 @@ const lmic_pinmap lmic_pins = {
 
 bool GO_DEEP_SLEEP = false;
 
+// If commented out, only the specified channels are used 
+// #define LMIC_USE_CH 0,1,2
+#define LMIC_USE_CH 0

@@ -2,7 +2,8 @@
 #include "io_pins.h"
 
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(115200);
+  Serial.println(F("Starting DHT ..."));
 }
 
 void loop() {

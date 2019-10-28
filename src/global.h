@@ -6,5 +6,6 @@
 #include <DHT.h>
 
 extern DHT dht;
+extern volatile int POWER_DOWN_SLEEP_COUNTER;
 
 #endif

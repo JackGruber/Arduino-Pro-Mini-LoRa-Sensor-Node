@@ -4,12 +4,14 @@
 #include "lorawan.h"
 #include "DHT.h"
 #include "global.h"
+#include "powerdown.h"
 
 void setup() {
   Serial.begin(115200);
   Serial.println(F("Starting DHT ..."));
   Setup_Pins();
   LoRaWANSetup();
+  PowerDownSetupWatchdog();
   dht.begin();
 }
 

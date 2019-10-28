@@ -3,6 +3,7 @@
 #include <hal/hal.h>
 #include <SPI.h>
 #include "io_pins.h"
+#include "powerdown.h"
 
 // Pin mapping
 const lmic_pinmap lmic_pins = {
@@ -200,7 +201,7 @@ void LoraWANDo(void)
 {
     if(GO_DEEP_SLEEP == true)
     {
-      //Power_Down_TX_INTERVAL();
+      PowerDownTXIntervall();
       GO_DEEP_SLEEP = false;
     }
     else

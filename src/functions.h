@@ -6,5 +6,6 @@
 
 void Setup_Pins(void);
 void Blink_Info_LED(void);
+long ReadVcc(void);
 
 #endif

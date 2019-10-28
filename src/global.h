@@ -5,7 +5,7 @@
 #include <Arduino.h>
 #include <DHT.h>
 
-extern DHT dht;
+extern DHT DHTSENSOR;
 extern volatile int POWER_DOWN_SLEEP_COUNTER;
 
 #endif

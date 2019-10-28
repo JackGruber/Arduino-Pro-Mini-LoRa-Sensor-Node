@@ -1,4 +1,4 @@
 #include "global.h"
 #include "io_pins.h"
 
-DHT dht(PIN_DHT, DHT22);
+DHT DHTSENSOR(PIN_DHT, DHT22);

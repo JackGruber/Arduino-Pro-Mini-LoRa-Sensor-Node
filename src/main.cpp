@@ -12,7 +12,7 @@ void setup() {
   Setup_Pins();
   LoRaWANSetup();
   PowerDownSetupWatchdog();
-  dht.begin();
+  DHTSENSOR.begin();
 }
 
 void loop() {

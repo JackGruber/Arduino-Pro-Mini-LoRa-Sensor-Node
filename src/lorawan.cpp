@@ -216,10 +216,10 @@ void LoraWANGetData()
 {
     int32_t vcc = ( ReadVcc() / 10) - 200;
     
-    float humidity_org = dht.readHumidity();
+    float humidity_org = DHTSENSOR.readHumidity();
     int32_t humidity = humidity_org;
     
-    float temperature_org = dht.readTemperature();
+    float temperature_org = DHTSENSOR.readTemperature();
     int32_t temp = (temperature_org * 10);
      
     if ( isnan(humidity_org) || isnan(temperature_org) )

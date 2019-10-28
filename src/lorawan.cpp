@@ -162,6 +162,7 @@ void onEvent (ev_t ev) {
 
             // Schedule next transmission
             os_setTimedCallback(&sendjob, os_getTime()+sec2osticks(TX_INTERVAL), LoraWANDo_send);
+            GO_DEEP_SLEEP = true;
            
             break;
         case EV_LOST_TSYNC:

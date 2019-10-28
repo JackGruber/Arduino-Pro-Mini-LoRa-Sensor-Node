@@ -4,6 +4,8 @@
 #include <SPI.h>
 #include "io_pins.h"
 #include "powerdown.h"
+#include "functions.h"
+#include "global.h"
 
 // Pin mapping
 const lmic_pinmap lmic_pins = {
@@ -101,7 +103,7 @@ void LoRaWANSetup()
 
 void LoraWANDo_send(osjob_t* j)
 {
-    //Read_Data();
+    LoraWANGetData();
     
     // Check if there is not a current TX/RX job running
     if (LMIC.opmode & OP_TXRXPEND) {
@@ -208,4 +210,47 @@ void LoraWANDo(void)
     {
       os_runloop_once();
     }
+}
+
+void LoraWANGetData()
+{
+    int32_t vcc = ( ReadVcc() / 10) - 200;
+    
+    float humidity_org = dht.readHumidity();
+    int32_t humidity = humidity_org;
+    
+    float temperature_org = dht.readTemperature();
+    int32_t temp = (temperature_org * 10);
+     
+    if ( isnan(humidity_org) || isnan(temperature_org) )
+    {
+      Serial.println(F("Failed to read from DHT sensor!"));
+    }
+
+    if ( isnan(humidity_org) )
+    { 
+      LORA_DATA[2] = 255;    
+      LORA_DATA[2] = 255;
+    }
+    else 
+    { 
+      LORA_DATA[2] = temp >> 8;
+      LORA_DATA[3] = temp & 0xFF;
+    }
+
+    if ( isnan(humidity_org)) { LORA_DATA[1] = 255; }
+    else { LORA_DATA[1] = humidity; }
+    
+    LORA_DATA[0] = vcc;
+    
+    Serial.print(F("VCC: "));
+    Serial.println(LORA_DATA[0]);
+    
+    Serial.print(F("Humidity: "));
+    Serial.println(LORA_DATA[1]);
+    
+    Serial.print(F("Temperature: "));
+    Serial.print(LORA_DATA[2]);
+    Serial.print(F(" "));
+    Serial.println(LORA_DATA[3]);
 }

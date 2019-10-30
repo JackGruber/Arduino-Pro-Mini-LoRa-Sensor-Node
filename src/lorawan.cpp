@@ -15,7 +15,7 @@ const lmic_pinmap lmic_pins = {
     .dio = {PIN_LMIC_DIO0, PIN_LMIC_DIO1, PIN_LMIC_DIO2 },
 };
 
-static uint8_t LORA_DATA[2];
+static uint8_t LORA_DATA[4];
 
 // Schedule TX every this many seconds (might become longer due to duty cycle limitations).
 const unsigned TX_INTERVAL = LORA_TX_INTERVAL;
@@ -110,7 +110,7 @@ void LoraWANDo_send(osjob_t* j)
         Serial.println(F("OP_TXRXPEND, not sending"));
     } else {
         // Prepare upstream data transmission at the next possible time.
-        LMIC_setTxData2(1, LORA_DATA, sizeof(LORA_DATA), 0);
+        LMIC_setTxData2(1, LORA_DATA, sizeof(LORA_DATA)-1, 0);
         Serial.println(F("Packet queued"));
     }
     // Next TX is scheduled after TX_COMPLETE event.

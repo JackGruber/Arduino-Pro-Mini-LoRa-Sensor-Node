@@ -214,23 +214,18 @@ void LoraWANDo(void)
 
 void LoraWANGetData()
 {
+    ReadDHTSensor();
+    
     int32_t vcc = ( ReadVcc() / 10) - 200;
     
-    float humidity_org = DHTSENSOR.readHumidity();
-    int32_t humidity = humidity_org;
+    int32_t humidity_lora = HUMIDITY;
     
-    float temperature_org = DHTSENSOR.readTemperature();
-    int32_t temp = (temperature_org * 10);
+    int32_t temp = (TEMPERATURE * 10);
      
-    if ( isnan(humidity_org) || isnan(temperature_org) )
-    {
-      Serial.println(F("Failed to read from DHT sensor!"));
-    }
-
-    if ( isnan(humidity_org) )
+    if ( isnan(temp) )
     { 
       LORA_DATA[2] = 255;    
-      LORA_DATA[2] = 255;
+      LORA_DATA[3] = 255;
     }
     else 
     { 
@@ -238,8 +233,8 @@ void LoraWANGetData()
       LORA_DATA[3] = temp & 0xFF;
     }
 
-    if ( isnan(humidity_org)) { LORA_DATA[1] = 255; }
-    else { LORA_DATA[1] = humidity; }
+    if ( isnan(humidity_lora)) { LORA_DATA[1] = 255; }
+    else { LORA_DATA[1] = humidity_lora; }
     
     LORA_DATA[0] = vcc;
     

@@ -1,4 +1,5 @@
 #include "global.h"
 #include "io_pins.h"
 
-DHT DHTSENSOR(PIN_DHT, DHT22);
+float HUMIDITY = 0;
+float TEMPERATURE = 0;

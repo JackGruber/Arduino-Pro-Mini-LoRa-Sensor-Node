@@ -1,5 +1,6 @@
 #include "functions.h"
 #include "io_pins.h"
+#include "global.h"
 
 void Setup_Pins()
 {
@@ -37,4 +38,52 @@ long ReadVcc() {
   long adc_result = (adc_high<<8) | adc_low;
   adc_result = 1125300L / adc_result; // Calculate Vcc (in mV); 1125300 = 1.1*1023*1000
   return adc_result; // Vcc in millivolts
+}
+
+void ReadDHTSensor()
+{
+  dht DHT;
+  int chk = DHT.read22(PIN_DHT);
+
+  Serial.print("DHT22 ");
+  switch (chk)
+  {
+  case DHTLIB_OK:
+    Serial.println("OK");
+    break;
+  case DHTLIB_ERROR_CHECKSUM:
+    Serial.println("Checksum error");
+    break;
+  case DHTLIB_ERROR_TIMEOUT:
+    Serial.println("Time out error");
+    break;
+  case DHTLIB_ERROR_CONNECT:
+    Serial.println("Connect error");
+    break;
+  case DHTLIB_ERROR_ACK_L:
+    Serial.println("Ack Low error");
+    break;
+  case DHTLIB_ERROR_ACK_H:
+    Serial.println("Ack High error");
+    break;
+  default:
+    Serial.println("Unknown error");
+    break;
+  }
+
+  if(chk == DHTLIB_OK)
+  {
+    HUMIDITY = DHT.humidity;
+    TEMPERATURE = DHT.temperature;
+  }
+  else
+  {
+    HUMIDITY = NAN;
+    TEMPERATURE = NAN;
+  }
+  Serial.print(HUMIDITY, 1);
+  Serial.print(" %,\t");
+  Serial.print(TEMPERATURE, 1);
+  Serial.print(" °C,\t");
+  Serial.println();
 }

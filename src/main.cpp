@@ -8,11 +8,11 @@
 void setup() {
   Serial.begin(115200);
   Serial.println(F("Starting DHT ..."));
+  delay(3000);
   PowerDownSetupWatchdog();
-  ReadDHTSensor();
   Setup_Pins();
-  LoRaWANSetup();
-  
+  Blink_Info_LED();
+  LoRaWANSetup();  
 }
 
 void loop() {

@@ -216,11 +216,11 @@ void LoraWANGetData()
 {
     ReadDHTSensor();
     
-    int32_t vcc = ( ReadVcc() / 10) - 200;
+    uint8_t  vcc = ( ReadVcc() / 10) - 200;
     
-    int32_t humidity_lora = HUMIDITY;
+    uint8_t humidity_lora = HUMIDITY;
     
-    int32_t temp = (TEMPERATURE * 10);
+    int16_t temp = (TEMPERATURE * 10);
      
     if ( isnan(temp) )
     { 

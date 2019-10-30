@@ -22,9 +22,9 @@ static const u1_t PROGMEM APPKEY[16] = TTN_APPKEY;
 
 static osjob_t sendjob;
 
-void os_getArtEui (u1_t* buf) { memcpy_P(buf, APPEUI, 8);}
-void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
-void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
+void os_getArtEui (u1_t* buf);
+void os_getDevEui (u1_t* buf);
+void os_getDevKey (u1_t* buf);
 
 void LoRaWANSetup(void);
 void LoraWANDo_send(osjob_t* j);

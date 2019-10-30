@@ -193,7 +193,7 @@ void onEvent (ev_t ev) {
             Serial.println(F("EV_TXSTART"));
             break;
          default:
-            Serial.println(F("Unknown event"));
+            Serial.print(F("Unknown event: "));
             Serial.println((unsigned) ev);
             break;
     }

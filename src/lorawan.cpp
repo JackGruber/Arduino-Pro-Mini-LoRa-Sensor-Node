@@ -222,7 +222,7 @@ void LoraWANGetData()
     
     int16_t temp = (TEMPERATURE * 10);
      
-    if ( isnan(temp) )
+    if ( isnan(TEMPERATURE) )
     { 
       LORA_DATA[2] = 255;    
       LORA_DATA[3] = 255;
@@ -233,7 +233,7 @@ void LoraWANGetData()
       LORA_DATA[3] = temp & 0xFF;
     }
 
-    if ( isnan(humidity_lora)) { LORA_DATA[1] = 255; }
+    if ( isnan(HUMIDITY)) { LORA_DATA[1] = 255; }
     else { LORA_DATA[1] = humidity_lora; }
     
     LORA_DATA[0] = vcc;

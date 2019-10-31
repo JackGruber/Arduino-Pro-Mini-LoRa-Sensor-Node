@@ -51,10 +51,10 @@ void LoRaWANSetup()
         uint8_t nwkskey[sizeof(NWKSKEY)];
         memcpy_P(appskey, APPSKEY, sizeof(APPSKEY));
         memcpy_P(nwkskey, NWKSKEY, sizeof(NWKSKEY));
-        LMIC_setSession (0x1, DEVADDR, nwkskey, appskey);
+        LMIC_setSession (0x13, DEVADDR, nwkskey, appskey);
     #else
         // If not running an AVR with PROGMEM, just use the arrays direc
-        LMIC_setSession (0x1, DEVADDR, NWKSKEY, APPSKEY);
+        LMIC_setSession (0x13, DEVADDR, NWKSKEY, APPSKEY);
     #endif
 
     #if defined(CFG_eu868)
@@ -137,6 +137,33 @@ void onEvent (ev_t ev) {
             break;
         case EV_JOINED:
             Serial.println(F("EV_JOINED"));
+            #ifndef DISABLE_JOIN
+                {
+                u4_t netid = 0;
+                devaddr_t devaddr = 0;
+                u1_t nwkKey[16];
+                u1_t artKey[16];
+                LMIC_getSessionKeys(&netid, &devaddr, nwkKey, artKey);
+                Serial.print("netid: ");
+                Serial.println(netid, DEC);
+                Serial.print("devaddr: ");
+                Serial.println(devaddr, HEX);
+                Serial.print("artKey: ");
+                for (size_t i=0; i<sizeof(artKey); ++i) {
+                    Serial.print(artKey[i], HEX);
+                }
+                Serial.println("");
+                Serial.print("nwkKey: ");
+                for (size_t i=0; i<sizeof(nwkKey); ++i) {
+                    Serial.print(nwkKey[i], HEX);
+                }
+                Serial.println("");
+                }
+                // Disable link check validation (automatically enabled
+                // during join, but because slow data rates change max TX
+                // size, we don't use it in this example.
+                LMIC_setLinkCheckMode(0);
+            #endif
             break;
         /* This event is defined but not used in the code
         case EV_RFU1:
@@ -193,7 +220,7 @@ void onEvent (ev_t ev) {
             Serial.println(F("EV_TXSTART"));
             break;
          default:
-            Serial.println(F("Unknown event"));
+            Serial.print(F("Unknown event: "));
             Serial.println((unsigned) ev);
             break;
     }

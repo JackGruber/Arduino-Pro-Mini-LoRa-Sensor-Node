@@ -74,6 +74,9 @@ void onEvent (ev_t ev) {
         case EV_JOINING:
             Serial.println(F("EV_JOINING"));
             break;
+        case EV_JOIN_TXCOMPLETE:
+            Serial.println(F("EV_JOIN_TXCOMPLETE"));
+            break;
         case EV_JOINED:
             Serial.println(F("EV_JOINED"));
             #ifndef DISABLE_JOIN
@@ -203,15 +206,4 @@ void LoraWANGetData()
     else { LORA_DATA[1] = humidity_lora; }
     
     LORA_DATA[0] = vcc;
-    
-    Serial.print(F("VCC: "));
-    Serial.println(LORA_DATA[0]);
-    
-    Serial.print(F("Humidity: "));
-    Serial.println(LORA_DATA[1]);
-    
-    Serial.print(F("Temperature: "));
-    Serial.print(LORA_DATA[2]);
-    Serial.print(F(" "));
-    Serial.println(LORA_DATA[3]);
 }

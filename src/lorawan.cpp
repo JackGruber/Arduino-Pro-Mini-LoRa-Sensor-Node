@@ -42,12 +42,12 @@ void LoRaWANSetup()
 
 void LoraWANDo_send(osjob_t* j)
 {
-    LoraWANGetData();
-    
     // Check if there is not a current TX/RX job running
     if (LMIC.opmode & OP_TXRXPEND) {
         Serial.println(F("OP_TXRXPEND, not sending"));
     } else {
+        LoraWANGetData();
+
         // Prepare upstream data transmission at the next possible time.
         LMIC_setTxData2(1, LORA_DATA, sizeof(LORA_DATA), 0);
         Serial.println(F("Packet queued"));
@@ -181,7 +181,7 @@ void LoraWANDo(void)
 void LoraWANGetData()
 {
     ReadDHTSensor();
-    
+
     uint8_t  vcc = ( ReadVcc() / 10) - 200;
     
     uint8_t humidity_lora = HUMIDITY;

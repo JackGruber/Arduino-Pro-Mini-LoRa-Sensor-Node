@@ -81,9 +81,4 @@ void ReadDHTSensor()
     HUMIDITY = NAN;
     TEMPERATURE = NAN;
   }
-  Serial.print(HUMIDITY, 1);
-  Serial.print(" %,\t");
-  Serial.print(TEMPERATURE, 1);
-  Serial.print(" °C,\t");
-  Serial.println();
 }

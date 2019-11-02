@@ -87,9 +87,9 @@ void PrintResetReason()
   uint8_t mcusr_copy = MCUSR;
   MCUSR = 0;
   Serial.print("MCUSR:");
-  if(MCUSR & (1<<WDRF)) Serial.print(" WDRF");
-  if(MCUSR & (1<<BORF)) Serial.print(" BORF");
-  if(MCUSR & (1<<EXTRF)) Serial.print(" EXTRF");
-  if(MCUSR & (1<<PORF)) Serial.print(" PORF");
+  if(mcusr_copy & (1<<WDRF)) Serial.print(" WDRF");
+  if(mcusr_copy & (1<<BORF)) Serial.print(" BORF");
+  if(mcusr_copy & (1<<EXTRF)) Serial.print(" EXTRF");
+  if(mcusr_copy & (1<<PORF)) Serial.print(" PORF");
   Serial.println();
 }

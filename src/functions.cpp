@@ -45,11 +45,10 @@ void ReadDHTSensor()
   dht DHT;
   int chk = DHT.read22(PIN_DHT);
 
-  Serial.print("DHT22 ");
   switch (chk)
   {
   case DHTLIB_OK:
-    Serial.println("OK");
+    //Serial.println("OK");
     break;
   case DHTLIB_ERROR_CHECKSUM:
     Serial.println("Checksum error");

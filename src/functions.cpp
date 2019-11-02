@@ -81,3 +81,14 @@ void ReadDHTSensor()
     TEMPERATURE = NAN;
   }
 }
+
+void PrintResetReason()
+{
+  Serial.print("MCUSR:");
+  if(MCUSR&WDRF) Serial.print(" WDRF");
+  if(MCUSR&BORF) Serial.print(" BORF");
+  if(MCUSR&EXTRF) Serial.print(" EXTRF");
+  if(MCUSR&PORF) Serial.print(" PORF");
+  MCUSR = 0;
+  Serial.println();
+}

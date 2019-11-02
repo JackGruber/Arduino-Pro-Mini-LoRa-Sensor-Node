@@ -9,5 +9,5 @@ void Setup_Pins(void);
 void Blink_Info_LED(void);
 long ReadVcc(void);
 void ReadDHTSensor(void);
-
+void PrintResetReason(void);
 #endif

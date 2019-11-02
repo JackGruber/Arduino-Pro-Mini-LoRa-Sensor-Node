@@ -84,11 +84,12 @@ void ReadDHTSensor()
 
 void PrintResetReason()
 {
-  Serial.print("MCUSR:");
-  if(MCUSR&WDRF) Serial.print(" WDRF");
-  if(MCUSR&BORF) Serial.print(" BORF");
-  if(MCUSR&EXTRF) Serial.print(" EXTRF");
-  if(MCUSR&PORF) Serial.print(" PORF");
+  uint8_t mcusr_copy = MCUSR;
   MCUSR = 0;
+  Serial.print("MCUSR:");
+  if(MCUSR & (1<<WDRF)) Serial.print(" WDRF");
+  if(MCUSR & (1<<BORF)) Serial.print(" BORF");
+  if(MCUSR & (1<<EXTRF)) Serial.print(" EXTRF");
+  if(MCUSR & (1<<PORF)) Serial.print(" PORF");
   Serial.println();
 }

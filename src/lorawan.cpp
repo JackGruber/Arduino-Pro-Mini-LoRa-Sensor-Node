@@ -203,7 +203,15 @@ void LoraWANGetData()
     }
 
     if ( isnan(HUMIDITY)) { LORA_DATA[1] = 255; }
-    else { LORA_DATA[1] = humidity_lora; }
+    else 
+    { 
+        int check = HUMIDITY;
+        LORA_DATA[1] = humidity_lora;
+
+        // Bit 8 for decimal 1 = 0.5
+        if(check > 0.251 && check < 0.751) { LORA_DATA[1] |= (1 << 7); }
+        else if(check > 0.751) { LORA_DATA[1] = LORA_DATA[1] + 1; }        
+    }
     
     LORA_DATA[0] = vcc;
 }

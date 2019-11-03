@@ -1,6 +1,7 @@
 #include "functions.h"
 #include "io_pins.h"
 #include "global.h"
+#include "DHT.h"
 
 void Setup_Pins()
 {
@@ -42,7 +43,20 @@ long ReadVcc() {
 
 void ReadDHTSensor()
 {
-
+  DHT dht(PIN_DHT, DHT22);
+  dht.begin();
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  if (isnan(h) || isnan(t)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+    HUMIDITY = NAN;
+    TEMPERATURE = NAN;
+  }
+  else
+  {
+    HUMIDITY = h;
+    TEMPERATURE = t;
+  }
 }
 
 void PrintResetReason()

@@ -205,7 +205,7 @@ void LoraWANGetData()
     if ( isnan(HUMIDITY)) { LORA_DATA[1] = 255; }
     else 
     { 
-        int check = HUMIDITY;
+        float check = HUMIDITY - humidity_lora;
         LORA_DATA[1] = humidity_lora;
 
         // Bit 8 for decimal 1 = 0.5

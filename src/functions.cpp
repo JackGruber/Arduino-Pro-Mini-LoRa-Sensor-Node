@@ -43,20 +43,19 @@ long ReadVcc() {
 
 void ReadDHTSensor()
 {
-  DHT dht(PIN_DHT, DHT22);
-  dht.begin();
-  float h = dht.readHumidity();
-  float t = dht.readTemperature();
-  if (isnan(h) || isnan(t)) {
-    Serial.println(F("Failed to read from DHT sensor!"));
-    HUMIDITY = NAN;
-    TEMPERATURE = NAN;
-  }
-  else
-  {
-    HUMIDITY = h;
-    TEMPERATURE = t;
-  }
+  float t = DHTSENSOR.getTemperature();
+  float h = DHTSENSOR.getHumidity();
+
+  Serial.print("DHT: ");
+  Serial.println(DHTSENSOR.getStatusString());
+  
+  HUMIDITY = h;
+  TEMPERATURE = t;
+
+  Serial.print(HUMIDITY);
+  Serial.println(" %");
+  Serial.print(TEMPERATURE);
+  Serial.println(" °C");
 }
 
 void PrintResetReason()

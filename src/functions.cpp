@@ -42,44 +42,7 @@ long ReadVcc() {
 
 void ReadDHTSensor()
 {
-  dht DHT;
-  int chk = DHT.read22(PIN_DHT);
 
-  switch (chk)
-  {
-  case DHTLIB_OK:
-    //Serial.println("OK");
-    break;
-  case DHTLIB_ERROR_CHECKSUM:
-    Serial.println("Checksum error");
-    break;
-  case DHTLIB_ERROR_TIMEOUT:
-    Serial.println("Time out error");
-    break;
-  case DHTLIB_ERROR_CONNECT:
-    Serial.println("Connect error");
-    break;
-  case DHTLIB_ERROR_ACK_L:
-    Serial.println("Ack Low error");
-    break;
-  case DHTLIB_ERROR_ACK_H:
-    Serial.println("Ack High error");
-    break;
-  default:
-    Serial.println("Unknown error");
-    break;
-  }
-
-  if(chk == DHTLIB_OK)
-  {
-    HUMIDITY = DHT.humidity;
-    TEMPERATURE = DHT.temperature;
-  }
-  else
-  {
-    HUMIDITY = NAN;
-    TEMPERATURE = NAN;
-  }
 }
 
 void PrintResetReason()

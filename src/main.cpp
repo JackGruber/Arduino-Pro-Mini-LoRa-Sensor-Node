@@ -8,6 +8,7 @@
 void setup() {
   Serial.begin(115200);
   Serial.println(F("Starting DHT ..."));
+  PrintResetReason();
   delay(3000);
   PowerDownSetupWatchdog();
   Setup_Pins();

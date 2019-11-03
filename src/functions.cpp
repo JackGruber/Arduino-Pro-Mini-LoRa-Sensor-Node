@@ -1,6 +1,7 @@
 #include "functions.h"
 #include "io_pins.h"
 #include "global.h"
+#include "DHT.h"
 
 void Setup_Pins()
 {
@@ -10,9 +11,9 @@ void Setup_Pins()
 void Blink_Info_LED()
 {
     digitalWrite(PIN_INFO_LED, HIGH);
-    delay(10);
+    delay(30);
     digitalWrite(PIN_INFO_LED, LOW);
-    delay(10);
+    delay(30);
 }
 
 // https://provideyourown.com/2012/secret-arduino-voltmeter-measure-battery-voltage/
@@ -42,48 +43,29 @@ long ReadVcc() {
 
 void ReadDHTSensor()
 {
-  dht DHT;
-  int chk = DHT.read22(PIN_DHT);
+  float t = DHTSENSOR.getTemperature();
+  float h = DHTSENSOR.getHumidity();
 
-  Serial.print("DHT22 ");
-  switch (chk)
-  {
-  case DHTLIB_OK:
-    Serial.println("OK");
-    break;
-  case DHTLIB_ERROR_CHECKSUM:
-    Serial.println("Checksum error");
-    break;
-  case DHTLIB_ERROR_TIMEOUT:
-    Serial.println("Time out error");
-    break;
-  case DHTLIB_ERROR_CONNECT:
-    Serial.println("Connect error");
-    break;
-  case DHTLIB_ERROR_ACK_L:
-    Serial.println("Ack Low error");
-    break;
-  case DHTLIB_ERROR_ACK_H:
-    Serial.println("Ack High error");
-    break;
-  default:
-    Serial.println("Unknown error");
-    break;
-  }
+  Serial.print("DHT: ");
+  Serial.println(DHTSENSOR.getStatusString());
+  
+  HUMIDITY = h;
+  TEMPERATURE = t;
 
-  if(chk == DHTLIB_OK)
-  {
-    HUMIDITY = DHT.humidity;
-    TEMPERATURE = DHT.temperature;
-  }
-  else
-  {
-    HUMIDITY = NAN;
-    TEMPERATURE = NAN;
-  }
-  Serial.print(HUMIDITY, 1);
-  Serial.print(" %,\t");
-  Serial.print(TEMPERATURE, 1);
-  Serial.print(" °C,\t");
+  Serial.print(HUMIDITY);
+  Serial.println(" %");
+  Serial.print(TEMPERATURE);
+  Serial.println(" °C");
+}
+
+void PrintResetReason()
+{
+  uint8_t mcusr_copy = MCUSR;
+  MCUSR = 0;
+  Serial.print("MCUSR:");
+  if(mcusr_copy & (1<<WDRF)) Serial.print(" WDRF");
+  if(mcusr_copy & (1<<BORF)) Serial.print(" BORF");
+  if(mcusr_copy & (1<<EXTRF)) Serial.print(" EXTRF");
+  if(mcusr_copy & (1<<PORF)) Serial.print(" PORF");
   Serial.println();
 }

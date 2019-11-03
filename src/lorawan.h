@@ -6,16 +6,19 @@
 #include <lmic.h>
 #include "lora_credentials.h"
 
-// LoRaWAN NwkSKey, network session key
-// This is the default Semtech key, which is used by the prototype TTN network initially.
-static const PROGMEM u1_t NWKSKEY[16] = TTN_NWKSKEY;
+// This EUI must be in little-endian format, so least-significant-byte
+// first. When copying an EUI from ttnctl output, this means to reverse
+// the bytes. For TTN issued EUIs the last bytes should be 0xD5, 0xB3,
+// 0x70.
+static const u1_t PROGMEM APPEUI[8]=TTN_APPEUI;
 
-// LoRaWAN AppSKey, application session key
-// This is the default Semtech key, which is used by the prototype TTN network initially.
-static const u1_t PROGMEM APPSKEY[16] = TTN_APPSKEY;
+// This should also be in little endian format, see above.
+static const u1_t PROGMEM DEVEUI[8]=TTN_DEVEUI;
 
-// LoRaWAN end-device address (DevAddr)
-static const u4_t DEVADDR = TTN_DEVADDR ; 
+// This key should be in big endian format (or, since it is not really a
+// number but a block of memory, endianness does not really apply). In
+// practice, a key taken from ttnctl can be copied as-is.
+static const u1_t PROGMEM APPKEY[16] = TTN_APPKEY;
 
 static osjob_t sendjob;
 

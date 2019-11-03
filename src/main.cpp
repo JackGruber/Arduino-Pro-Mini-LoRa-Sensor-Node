@@ -10,6 +10,7 @@ void setup() {
   Serial.println(F("Starting DHT ..."));
   PrintResetReason();
   delay(3000);
+  DHTSENSOR.setup(PIN_DHT);
   PowerDownSetupWatchdog();
   Setup_Pins();
   Blink_Info_LED();

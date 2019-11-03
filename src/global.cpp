@@ -3,3 +3,4 @@
 
 float HUMIDITY = NAN;
 float TEMPERATURE = NAN;
+DHT DHTSENSOR;

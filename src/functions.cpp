@@ -11,9 +11,9 @@ void Setup_Pins()
 void Blink_Info_LED()
 {
     digitalWrite(PIN_INFO_LED, HIGH);
-    delay(10);
+    delay(30);
     digitalWrite(PIN_INFO_LED, LOW);
-    delay(10);
+    delay(30);
 }
 
 // https://provideyourown.com/2012/secret-arduino-voltmeter-measure-battery-voltage/

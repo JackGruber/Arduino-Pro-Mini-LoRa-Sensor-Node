@@ -74,9 +74,6 @@ void onEvent (ev_t ev) {
         case EV_JOINING:
             Serial.println(F("EV_JOINING"));
             break;
-        case EV_JOIN_TXCOMPLETE:
-            Serial.println(F("EV_JOIN_TXCOMPLETE"));
-            break;
         case EV_JOINED:
             Serial.println(F("EV_JOINED"));
             #ifndef DISABLE_JOIN
@@ -107,10 +104,13 @@ void onEvent (ev_t ev) {
                 LMIC_setLinkCheckMode(0);
             #endif
             break;
-        /* This event is defined but not used in the code
-        case EV_RFU1:
-            Serial.println(F("EV_RFU1"));
-            break;
+        /*
+        || This event is defined but not used in the code. No
+        || point in wasting codespace on it.
+        ||
+        || case EV_SCAN_FOUND:
+        ||    Serial.println(F("EV_SCAN_FOUND"));
+        ||    break;
         */
         case EV_JOIN_FAILED:
             Serial.println(F("EV_JOIN_FAILED"));
@@ -160,6 +160,15 @@ void onEvent (ev_t ev) {
         */
         case EV_TXSTART:
             Serial.println(F("EV_TXSTART"));
+            break;
+        case EV_TXCANCELED:
+            Serial.println(F("EV_TXCANCELED"));
+            break;
+        case EV_RXSTART:
+            /* do not print anything -- it wrecks timing */
+            break;
+        case EV_JOIN_TXCOMPLETE:
+            Serial.println(F("EV_JOIN_TXCOMPLETE: no JoinAccept"));
             break;
          default:
             Serial.print(F("Unknown event: "));

@@ -16,3 +16,6 @@
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+
+# credentials
+*_credentials.h

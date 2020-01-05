@@ -1,5 +1,19 @@
 # TTN DHT22 Sensor
 
+Temperature and humidity sensor based on an `Arduino Pro Mini` with `DHT22` sensor and `RFM95` LoRa modul which is operated from on 18650 protected battery. 
+
+## Circuit
+
+<img src="img/circuit.jpg">
+
+## Case
+
+<img src="img/case_3d.jpg">
+
+## Diagrams 
+
+<img src="img/value_plot.jpg">
+
 ## TTN payload decoder
 
 ```javascript

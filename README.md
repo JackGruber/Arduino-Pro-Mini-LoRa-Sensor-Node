@@ -1,6 +1,6 @@
-# TTN DHT22 Sensor
+# Arduino Pro Mini TTN LoRaWAN sensor node
 
-Temperature and humidity sensor based on an `Arduino Pro Mini` with `DHT22` sensor and `RFM95` LoRa modul which is operated from on 18650 protected battery. 
+`Arduino Pro Mini` TTN LoRaWAN Node with `DHT22` and `RFM95` module powered by an 18650 protected battery.
 
 ## Circuit
 
@@ -13,7 +13,7 @@ Temperature and humidity sensor based on an `Arduino Pro Mini` with `DHT22` sens
 ## Diagrams 
 <img src="img/value_plot.jpg">
 
-### Battery voltage curve over 12 months 
+### Battery voltage curve over 12 months with measure and send data all 5 minutes
 
 <img src="img/vcc_plot.jpg">
 

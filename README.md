@@ -5,6 +5,7 @@
 ## Circuit
 
 <img src="img/circuit.jpg">
+<img src="gerber/promini_rfm95.jpg">
 
 ## Case
 

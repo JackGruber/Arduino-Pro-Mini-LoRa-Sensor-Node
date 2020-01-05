@@ -11,8 +11,11 @@ Temperature and humidity sensor based on an `Arduino Pro Mini` with `DHT22` sens
 <img src="img/case_3d.jpg">
 
 ## Diagrams 
-
 <img src="img/value_plot.jpg">
+
+### Battery voltage curve over 12 months 
+
+<img src="img/vcc_plot.jpg">
 
 ## TTN payload decoder
 

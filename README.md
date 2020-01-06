@@ -1,5 +1,7 @@
 # Arduino Pro Mini TTN LoRaWAN sensor node
 
+<img src="img/case_open.jpg">
+
 `Arduino Pro Mini` TTN LoRaWAN Node with `DHT22` and `RFM95` module powered by an 18650 protected battery.  
 The Arduino was converted to LowPower by desoldering the power LED and the voltage converter.
 

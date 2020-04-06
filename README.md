@@ -3,7 +3,7 @@
 <img src="img/case_open.jpg">
 
 `Arduino Pro Mini` TTN LoRaWAN Node with `DHT22` and `RFM95` module powered by an 18650 protected battery.  
-The Arduino was converted to LowPower by desoldering the power LED and the voltage converter.
+The Arduino was converted to [LowPower](https://jackgruber.github.io/2019-12-27-Low-power-Arduino-Pro-Mini/) by desoldering the power LED and the voltage converter.
 
 ## Circuit
 

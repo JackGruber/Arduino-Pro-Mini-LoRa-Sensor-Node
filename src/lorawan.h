@@ -27,9 +27,9 @@ void os_getDevEui(u1_t *buf);
 void os_getDevKey(u1_t *buf);
 
 void LoRaWANSetup(void);
-void LoraWANDo_send(osjob_t *j);
-void LoraWANDo(void);
-void LoraWANGetData(void);
+void LoRaWANDo_send(osjob_t *j);
+void LoRaWANDo(void);
+void LoRaWANGetData(void);
 void LoRaWANVersion(void);
 
 #endif

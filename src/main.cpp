@@ -21,5 +21,5 @@ void setup()
 
 void loop()
 {
-  LoraWANDo();
+  LoRaWANDo();
 }

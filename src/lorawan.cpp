@@ -40,10 +40,10 @@ void LoRaWANSetup()
     LMIC_setClockError(MAX_CLOCK_ERROR * 1 / 100);
 
     // Start job
-    LoraWANDo_send(&sendjob);
+    LoRaWANDo_send(&sendjob);
 }
 
-void LoraWANDo_send(osjob_t *j)
+void LoRaWANDo_send(osjob_t *j)
 {
     // Check if there is not a current TX/RX job running
     if (LMIC.opmode & OP_TXRXPEND)
@@ -52,7 +52,7 @@ void LoraWANDo_send(osjob_t *j)
     }
     else
     {
-        LoraWANGetData();
+        LoRaWANGetData();
 
         // Prepare upstream data transmission at the next possible time.
         LMIC_setTxData2(1, LORA_DATA, sizeof(LORA_DATA), 0);
@@ -143,7 +143,7 @@ void onEvent(ev_t ev)
         }
 
         // Schedule next transmission
-        os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), LoraWANDo_send);
+        os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), LoRaWANDo_send);
         GO_DEEP_SLEEP = true;
 
         break;
@@ -187,7 +187,7 @@ void onEvent(ev_t ev)
     }
 }
 
-void LoraWANDo(void)
+void LoRaWANDo(void)
 {
     if (GO_DEEP_SLEEP == true)
     {
@@ -200,7 +200,7 @@ void LoraWANDo(void)
     }
 }
 
-void LoraWANGetData()
+void LoRaWANGetData()
 {
     ReadDHTSensor();
 

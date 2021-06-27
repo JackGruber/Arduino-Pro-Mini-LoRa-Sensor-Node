@@ -19,3 +19,4 @@
 
 # credentials
 *_credentials.h
+include/version_build.h

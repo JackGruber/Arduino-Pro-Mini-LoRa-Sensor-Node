@@ -5,7 +5,8 @@
 #include "global.h"
 #include "powerdown.h"
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
   Serial.println(F("Starting DHT ..."));
   PrintResetReason();
@@ -15,9 +16,10 @@ void setup() {
   PowerDownSetupWatchdog();
   Setup_Pins();
   Blink_Info_LED();
-  LoRaWANSetup();  
+  LoRaWANSetup();
 }
 
-void loop() {
+void loop()
+{
   LoraWANDo();
 }

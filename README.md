@@ -21,7 +21,7 @@ The Arduino was converted to [LowPower](https://jackgruber.github.io/2019-12-27-
 
 <img src="img/vcc_plot.jpg">
 
-## TTN payload decoder
+## TTN payload decoder (v2)
 
 ```javascript
 function Decoder(bytes, port) {
@@ -40,3 +40,23 @@ function Decoder(bytes, port) {
 }
 ```
 
+## TTN payload decoder (v3)
+
+```javascript
+function decodeUplink(input) {
+  var decoded = {};
+  decoded.vcc = (input.bytes[0] + 200)/100;
+  if(input.bytes[1] != 255){
+    decoded.humidity = input.bytes[1]; 
+    decoded.humidity &= ~(1 << 7);
+    if(input.bytes[1] >> 7 == 1) { decoded.humidity +=0.5 }
+  }
+  if(input.bytes[2] != 255 || input.bytes[3] != 255) decoded.temperature = ((input.bytes[2]<<24>>16 | input.bytes[3]) / 10);
+  
+  return {
+    data: decoded,
+    warnings: [],
+    errors: []
+  };
+}
+```

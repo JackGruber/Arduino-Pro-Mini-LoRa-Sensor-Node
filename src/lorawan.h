@@ -30,5 +30,6 @@ void LoRaWANSetup(void);
 void LoraWANDo_send(osjob_t* j);
 void LoraWANDo(void);
 void LoraWANGetData(void);
+void LoRaWANVersion(void);
 
 #endif

@@ -9,6 +9,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println(F("Starting DHT ..."));
   PrintResetReason();
+  LoRaWANVersion();
   delay(3000);
   DHTSENSOR.setup(PIN_DHT);
   PowerDownSetupWatchdog();
